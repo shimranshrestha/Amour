@@ -180,7 +180,23 @@
 </main>
 
 <footer class="site-footer">
-  <p>AMOUR — Bad decisions, beautifully framed. <span class="footer-heart">♡</span></p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p class="footer-logo">AMOUR<span class="logo-dot">.</span></p>
+      <p class="footer-tagline">Bad decisions, beautifully framed.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <button class="footer-link" data-nav-target="screen-home">Home</button>
+      <button class="footer-link" data-nav-target="screen-frame">Enter the Booth</button>
+      <button class="footer-link" data-nav-target="screen-design">Your Design</button>
+    </nav>
+    <p class="footer-note">Camera access only — nothing is ever stored or uploaded.</p>
+  </div>
+  <div class="footer-divider" aria-hidden="true"></div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="footerYear">2026</span> AMOUR Photobooth. Made for the group chat.</p>
+    <p class="footer-heart-line">Pose <span class="dot-sep">•</span> Flash <span class="dot-sep">•</span> Obsess <span class="footer-heart">♡</span></p>
+  </div>
 </footer>
 
 <canvas id="captureCanvas" hidden></canvas>
