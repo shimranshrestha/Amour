@@ -1,24 +1,24 @@
 :root {
-  --cream: #FBF3EE;
-  --cream-deep: #F5E7E0;
-  --blush: #F3D9DE;
-  --baby-pink: #EFC1CB;
-  --rose: #DD8FA0;
-  --rose-deep: #C3697F;
-  --mauve: #7C4A55;
-  --ink: #2C1B20;
-  --ink-soft: #6B535A;
+  --cream: #FFFBF8;
+  --cream-deep: #FDF3ED;
+  --blush: #FCE7ED;
+  --baby-pink: #F9D3DE;
+  --rose: #F2AFC2;
+  --rose-deep: #E48CA2;
+  --mauve: #A9707D;
+  --ink: #3E2B31;
+  --ink-soft: #8C7076;
   --white: #FFFFFF;
-  --white-glass: rgba(255, 255, 255, 0.6);
+  --white-glass: rgba(255, 255, 255, 0.7);
   --font-display: 'Cormorant Garamond', 'Georgia', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --radius-sm: 10px;
   --radius-md: 18px;
   --radius-lg: 28px;
   --radius-pill: 999px;
-  --shadow-soft: 0 10px 30px rgba(124, 74, 85, 0.10);
-  --shadow-lift: 0 18px 46px rgba(124, 74, 85, 0.18);
-  --border-hair: 1px solid rgba(124, 74, 85, 0.14);
+  --shadow-soft: 0 10px 30px rgba(169, 112, 125, 0.08);
+  --shadow-lift: 0 18px 46px rgba(169, 112, 125, 0.15);
+  --border-hair: 1px solid rgba(169, 112, 125, 0.12);
   --ease-soft: cubic-bezier(.22, 1, .36, 1);
 }
 
