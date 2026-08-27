@@ -639,8 +639,94 @@ img { max-width: 100%; display: block; }
 }
 .result-success.is-visible { opacity: 1; }
 
-.site-footer { text-align: center; padding: 2rem 1rem 2.6rem; font-size: 0.82rem; color: var(--ink-soft); position: relative; z-index: 2; }
+.site-footer {
+  position: relative;
+  z-index: 2;
+  margin-top: 2rem;
+  padding: 3rem clamp(1.25rem, 4vw, 3.5rem) 2rem;
+  background: linear-gradient(180deg, transparent 0%, var(--blush) 100%);
+  border-top: var(--border-hair);
+}
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  text-align: left;
+}
+.footer-brand { max-width: 320px; }
+.footer-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--ink);
+}
+.footer-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--mauve);
+  margin-top: 0.35rem;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.6rem;
+  padding-top: 0.3rem;
+}
+.footer-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  position: relative;
+  padding: 0.2rem 0;
+  transition: color 0.25s var(--ease-soft);
+}
+.footer-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1px;
+  background: var(--rose-deep);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-soft);
+}
+.footer-link:hover { color: var(--ink); }
+.footer-link:hover::after { transform: scaleX(1); }
+.footer-note {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  max-width: 260px;
+  line-height: 1.6;
+}
+.footer-divider {
+  max-width: 1080px;
+  margin: 2rem auto 1.4rem;
+  height: 1px;
+  background: rgba(169, 112, 125, 0.18);
+}
+.footer-bottom {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+.footer-heart-line { display: flex; align-items: center; gap: 0.2rem; }
 .footer-heart { color: var(--rose-deep); }
+@media (max-width: 640px) {
+  .footer-inner, .footer-bottom { flex-direction: column; text-align: center; align-items: center; }
+  .footer-links { justify-content: center; }
+}
 
 @media (max-width: 480px) {
   .btn-large { width: 100%; }
