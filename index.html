@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMOUR — Bad decisions, beautifully framed.</title>
+<meta name="description" content="AMOUR is a playful digital photobooth for capturing moments with friends. Pose, flash, obsess.">
+
+<!-- Editorial serif + clean sans-serif pairing -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ AMBIENT DECORATIVE LAYER ============ -->
+<div class="floating-decor" aria-hidden="true">
+  <span class="deco deco--heart" style="top:12%; left:6%;">♡</span>
+  <span class="deco deco--star" style="top:22%; left:92%;">✦</span>
+  <span class="deco deco--dot" style="top:68%; left:4%;">●</span>
+  <span class="deco deco--heart" style="top:78%; left:88%;">♡</span>
+  <span class="deco deco--star" style="top:48%; left:96%;">✧</span>
+  <span class="deco deco--sparkle" style="top:8%; left:48%;">✦</span>
+  <span class="deco deco--dot" style="top:90%; left:50%;">●</span>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" data-animate="header">
+  <div class="logo" aria-label="AMOUR home">AMOUR<span class="logo-dot">.</span></div>
+
+  <nav class="main-nav" aria-label="Primary">
+    <button class="nav-link is-active" data-nav-target="screen-home" aria-current="page">Home</button>
+    <button class="nav-link" data-nav-target="screen-booth">Photobooth</button>
+  </nav>
+
+  <button class="btn btn-primary btn-compact" id="headerEnterBtn" data-nav-target="screen-booth">
+    Enter Booth
+  </button>
+</header>
+
+<main id="main">
+
+  <!-- ======================================================
+       SCREEN 1 — HOME / LANDING
+  ======================================================= -->
+  <section id="screen-home" class="screen is-active" data-screen aria-label="Home">
+    <div class="hero">
+
+      <div class="hero-copy">
+        <p class="eyebrow" data-hero-el>Digital Photobooth &nbsp;—&nbsp; Est. for Bad Decisions</p>
+        <h1 class="hero-title" data-hero-el>
+          <span class="hero-title-line">AM<span class="ligature">OU</span>R</span>
+        </h1>
+        <p class="hero-tagline" data-hero-el>Bad decisions, beautifully framed.</p>
+        <p class="hero-desc" data-hero-el>
+          AMOUR is a playful digital photobooth made for capturing the moments you'll
+          text your group chat about at 2am — a little dramatic, a little glamorous,
+          entirely yours. Choose a frame, strike a pose, and let AMOUR do the rest.
+        </p>
+
+        <div class="hero-actions" data-hero-el>
+          <button class="btn btn-primary btn-large" id="enterBoothBtn" data-nav-target="screen-booth">
+            Enter the Booth
+          </button>
+          <p class="hero-microlabel">Pose <span class="dot-sep">•</span> Flash <span class="dot-sep">•</span> Obsess</p>
+        </div>
+      </div>
+
+      <!-- Stylised CSS-only photobooth composition -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-stage">
+
+          <div class="poster-strip" data-float="slow">
+            <div class="poster-frame"></div>
+            <div class="poster-frame"></div>
+            <div class="poster-frame"></div>
+            <span class="strip-label">AMOUR</span>
+          </div>
+
+          <div class="polaroid polaroid--a" data-float="med">
+            <div class="polaroid-photo polaroid-photo--a"></div>
+            <span class="polaroid-caption">xoxo, 12:04am</span>
+          </div>
+
+          <div class="polaroid polaroid--b" data-float="fast">
+            <div class="polaroid-photo polaroid-photo--b"></div>
+            <span class="polaroid-caption">say cheese ♡</span>
+          </div>
+
+          <div class="flash-burst" data-flash-loop></div>
+          <div class="film-dots">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SCREEN 2 — PHOTOBOOTH SETUP (frame + click count)
+  ======================================================= -->
+  <section id="screen-booth" class="screen" data-screen aria-label="Photobooth setup">
+    <div class="section-inner">
+
+      <p class="eyebrow eyebrow--center" data-reveal>AMOUR Photobooth</p>
+      <h2 class="section-title" data-reveal>Make it a moment.</h2>
+      <p class="section-desc" data-reveal>Choose your frame, choose your clicks, and let AMOUR do the rest.</p>
+
+      <!-- STEP 01 -->
+      <div class="step-block" data-reveal>
+        <div class="step-heading">
+          <span class="step-index">01</span>
+          <div>
+            <h3>Choose your frame</h3>
+            <p>Every frame tells your night differently — pick the one that matches your mood.</p>
+          </div>
+        </div>
+
+        <div class="frame-grid" id="frameGrid" role="radiogroup" aria-label="Choose a photo frame style">
+          <!-- Frame cards injected by script.js -->
+        </div>
+      </div>
+
+      <!-- STEP 02 -->
+      <div class="step-block" data-reveal>
+        <div class="step-heading">
+          <span class="step-index">02</span>
+          <div>
+            <h3>Choose number of clicks</h3>
+            <p>How many moments do you want to keep?</p>
+          </div>
+        </div>
+
+        <div class="clicks-grid" id="clicksGrid" role="radiogroup" aria-label="Choose number of photos">
+          <!-- Click-count cards injected by script.js -->
+        </div>
+      </div>
+
+      <!-- STEP 03 -->
+      <div class="step-block step-block--cta" data-reveal>
+        <div class="step-heading">
+          <span class="step-index">03</span>
+          <div>
+            <h3>Start the booth</h3>
+            <p>Camera access is required — AMOUR never stores or uploads your photos.</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-large" id="startShootingBtn" data-nav-target="screen-camera" disabled>
+          Start Shooting
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SCREEN 3 — CAMERA + COUNTDOWN
+  ======================================================= -->
+  <section id="screen-camera" class="screen" data-screen aria-label="Camera">
+    <div class="section-inner section-inner--narrow">
+
+      <p class="eyebrow eyebrow--center" data-reveal>Lights, Camera, AMOUR</p>
+      <h2 class="section-title" data-reveal>Strike your pose.</h2>
+
+      <div class="camera-meta" data-reveal>
+        <span class="camera-pill" id="cameraFrameLabel">Frame: —</span>
+        <span class="camera-pill" id="cameraShotLabel">Shot 0 / 0</span>
+      </div>
+
+      <!-- Live camera stage -->
+      <div class="camera-stage" id="cameraStage" data-frame-style="classic">
+        <div class="camera-frame-deco" aria-hidden="true"></div>
+
+        <video id="cameraVideo" autoplay playsinline muted></video>
+
+        <div class="flash-overlay" id="flashOverlay" aria-hidden="true"></div>
+
+        <div class="countdown-layer" id="countdownLayer" aria-live="polite">
+          <span class="countdown-number" id="countdownNumber"></span>
+        </div>
+
+        <div class="camera-idle" id="cameraIdle">
+          <p>Requesting camera access…</p>
+        </div>
+      </div>
+
+      <!-- Camera permission error state -->
+      <div class="camera-error" id="cameraError" hidden>
+        <span class="camera-error-icon">✦</span>
+        <h3>AMOUR can't see you yet.</h3>
+        <p>Camera access is required to use the photobooth. Please allow camera
+          permissions in your browser and try again — nothing is stored or uploaded.</p>
+        <button class="btn btn-primary" id="cameraRetryBtn">Try Again</button>
+      </div>
+
+      <p class="camera-hint" id="cameraHint">Get ready — your first countdown starts automatically.</p>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SCREEN 4 — RESULT / PREVIEW
+  ======================================================= -->
+  <section id="screen-result" class="screen" data-screen aria-label="Your photobooth result">
+    <div class="section-inner section-inner--narrow">
+
+      <p class="eyebrow eyebrow--center" data-reveal>Your Moment</p>
+      <h2 class="section-title" data-reveal>C'est magnifique.</h2>
+      <p class="section-desc" data-reveal>Here's your AMOUR original — ready to keep, share, or frame for real.</p>
+
+      <div class="result-stage" data-reveal>
+        <img id="resultImage" class="result-image" alt="Your composed AMOUR photobooth strip" />
+      </div>
+
+      <div class="result-actions" data-reveal>
+        <button class="btn btn-ghost" id="retakeBtn">Retake</button>
+        <button class="btn btn-primary" id="downloadBtn">
+          <span class="btn-label">Download JPG</span>
+        </button>
+      </div>
+
+      <p class="result-success" id="resultSuccess" aria-live="polite">Your moment is ready ♡</p>
+
+      <button class="text-link" id="startAgainBtn">Start Again</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>AMOUR — Bad decisions, beautifully framed. <span class="footer-heart">♡</span></p>
+</footer>
+
+<!-- Hidden working canvases (never shown to the user) -->
+<canvas id="captureCanvas" hidden></canvas>
+<canvas id="compositionCanvas" hidden></canvas>
+
+<!-- Motion — the vanilla-JS animation engine from the Framer Motion team -->
+<script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
