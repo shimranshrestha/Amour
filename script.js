@@ -163,21 +163,52 @@
     });
   }
   function highlightSelectedCard(container, cardEl) {
-    Array.from(container.querySelectorAll('.frame-card')).forEach((c) => {
-      const isSelected = c === cardEl;
-      c.classList.toggle('is-selected', isSelected);
-      c.setAttribute('aria-checked', String(isSelected));
-    });
-    if (M) {
-      M.animate(cardEl, { scale: [0.96, 1] }, { duration: 0.35, easing: [0.34, 1.56, 0.64, 1] });
-      M.animate(cardEl.querySelector('.frame-check'), { scale: [0, 1], opacity: [0, 1] }, { duration: 0.3 });
+  Array.from(container.querySelectorAll('.frame-card')).forEach((c) => {
+    const isSelected = c === cardEl;
+    c.classList.toggle('is-selected', isSelected);
+    c.setAttribute('aria-checked', String(isSelected));
+    const check = c.querySelector('.frame-check');
+    if (check && !isSelected) {
+      check.style.removeProperty('opacity');
+      check.style.removeProperty('transform');
+    }
+  });
+  if (M) {
+    M.animate(cardEl, { scale: [0.96, 1] }, { duration: 0.35, easing: [0.34, 1.56, 0.64, 1] });
+    const check = cardEl.querySelector('.frame-check');
+    if (check) {
+      M.animate(check, { scale: [0, 1], opacity: [0, 1] }, { duration: 0.3 }).finished.then(() => {
+        check.style.removeProperty('opacity');
+        check.style.removeProperty('transform');
+      });
     }
   }
-  function selectFrame(frameId, cardEl) {
-    state.frame = frameId;
-    highlightSelectedCard(frameGrid, cardEl);
-    toClicksBtn.disabled = false;
+}
+  function deselectCard(cardEl) {
+  cardEl.classList.remove('is-selected');
+  cardEl.setAttribute('aria-checked', 'false');
+  const check = cardEl.querySelector('.frame-check');
+  if (check) {
+    check.style.removeProperty('opacity');
+    check.style.removeProperty('transform');
   }
+  if (M) {
+    M.animate(cardEl, { scale: [1, 0.96, 1] }, { duration: 0.3 });
+  }
+}
+
+function selectFrame(frameId, cardEl) {
+  if (state.frame === frameId) {
+    deselectCard(cardEl);
+    state.frame = null;
+    toClicksBtn.disabled = true;
+    return;
+  }
+  state.frame = frameId;
+  highlightSelectedCard(frameGrid, cardEl);
+  toClicksBtn.disabled = false;
+}
+
   function selectDesign(frameId, cardEl) {
     if (state.finalDesign === frameId) return;
     state.finalDesign = frameId;
@@ -203,17 +234,25 @@
     });
   }
   function selectClickCount(count, cardEl) {
-    state.clicks = count;
-    document.querySelectorAll('.click-card').forEach((c) => {
-      const isSelected = c === cardEl;
-      c.classList.toggle('is-selected', isSelected);
-      c.setAttribute('aria-checked', String(isSelected));
-    });
-    if (M) {
-      M.animate(cardEl, { scale: [0.9, 1] }, { duration: 0.32, easing: [0.34, 1.56, 0.64, 1] });
-    }
-    startShootingBtn.disabled = false;
+  if (state.clicks === count) {
+    cardEl.classList.remove('is-selected');
+    cardEl.setAttribute('aria-checked', 'false');
+    state.clicks = null;
+    startShootingBtn.disabled = true;
+    if (M) M.animate(cardEl, { scale: [1, 0.95, 1] }, { duration: 0.28 });
+    return;
   }
+  state.clicks = count;
+  document.querySelectorAll('.click-card').forEach((c) => {
+    const isSelected = c === cardEl;
+    c.classList.toggle('is-selected', isSelected);
+    c.setAttribute('aria-checked', String(isSelected));
+  });
+  if (M) {
+    M.animate(cardEl, { scale: [0.9, 1] }, { duration: 0.32, easing: [0.34, 1.56, 0.64, 1] });
+  }
+  startShootingBtn.disabled = false;
+}
 
   function initCamera() {
     return new Promise((resolve, reject) => {
@@ -722,6 +761,8 @@
     updateNavProgress('screen-home');
     animateHeroIn();
     animateAmbientDecor();
+    const footerYear = document.getElementById('footerYear');
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
   }
   document.addEventListener('DOMContentLoaded', init);
 })();
